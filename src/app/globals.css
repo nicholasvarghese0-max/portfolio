@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/* Canela Trial: drop the font file into public/fonts/ to activate it.
+   Until then the Cormorant Garamond italic fallback is used. */
+@font-face {
+  font-family: "Canela Trial";
+  src: url("/fonts/Canela-Light-Italic-Trial.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --brand: #2f5f8f;
+  --brand-soft: #bfd5ee;
+  --brand-line: #a9c4e4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-line: var(--brand-line);
+  --font-sans: var(--font-urbanist), sans-serif;
+  --font-display: "Satoshi", var(--font-urbanist), sans-serif;
+  --font-serif: "Canela Trial", var(--font-cormorant), serif;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
