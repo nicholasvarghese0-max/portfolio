@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import AutoVideo from "@/components/AutoVideo";
 import GradientField from "@/components/GradientField";
 import Header from "@/components/Header";
 import MoreProjects from "@/components/MoreProjects";
@@ -86,9 +87,33 @@ const rootCause =
   "In reality, today’s buyers value authenticity, process, and meaning -the issue isn’t interest it’s presentation.";
 
 // screens that share a single description
-const screenGroups = [
+type ScreenGroup = {
+  screens: number[];
+  description: string;
+  /** interaction recordings that stand in for the group's still screens */
+  videos?: Video[];
+  /** screens still shown as images after the videos; by default the videos replace them all */
+  stills?: number[];
+};
+
+type Video = {
+  src: string;
+  poster: string;
+  width: number;
+  height: number;
+};
+
+const screenGroups: ScreenGroup[] = [
   {
     screens: [1, 2],
+    videos: [
+      {
+        src: "/projects/aranmula/demo-1-web.mp4",
+        poster: "/projects/aranmula/screen-1.png",
+        width: 1440,
+        height: 864,
+      },
+    ],
     description:
       "The hero section of the homepage explains what the mirror is and why it is special. It also has a Learn More button to give the user more context.",
   },
@@ -99,16 +124,52 @@ const screenGroups = [
   },
   {
     screens: [4, 5],
+    videos: [
+      {
+        src: "/projects/aranmula/demo-3-web.mp4",
+        poster: "/projects/aranmula/screen-4.png",
+        width: 1440,
+        height: 792,
+      },
+    ],
     description:
       "The “Reflections of Fame” communicate the cultural significance of the mirror using images of the mirror being gifted to various celebrities thus creating trust in the user about the mirror.",
   },
   {
     screens: [6],
+    videos: [
+      {
+        src: "/projects/aranmula/demo-2-web.mp4",
+        poster: "/projects/aranmula/screen-6.png",
+        width: 1440,
+        height: 736,
+      },
+    ],
     description:
       "A carousel that categorises different mirror types with a short description helps users narrow down what kind of mirror they want and prevents choice paralysis.",
   },
   {
     screens: [7, 8, 9, 10],
+    videos: [
+      {
+        src: "/projects/aranmula/demo-4-web.mp4",
+        poster: "/projects/aranmula/screen-7.png",
+        width: 1440,
+        height: 732,
+      },
+      {
+        src: "/projects/aranmula/demo-5-web.mp4",
+        poster: "/projects/aranmula/screen-9.png",
+        width: 1440,
+        height: 762,
+      },
+      {
+        src: "/projects/aranmula/demo-6-web.mp4",
+        poster: "/projects/aranmula/screen-10.png",
+        width: 1440,
+        height: 768,
+      },
+    ],
     description:
       "Another page was created to talk in depth about different aspect of the craft ranging from its history to the process of its creation, the motifs used and the comparison between authentic Aranmula Kannadi and regular mirrors.",
   },
@@ -361,10 +422,21 @@ export default function AranmulaKannadiPage() {
             eyebrow="Final Screens"
             title="Bringing Tradition to Life"
           >
-            {screenGroups.map(({ screens, description }) => (
+            {screenGroups.map(({ screens, description, videos, stills }) => (
               <Reveal key={screens[0]}>
                 <div className="space-y-4">
-                  {screens.map((n) => (
+                  {videos?.map((video) => (
+                    <div
+                      key={video.src}
+                      className="overflow-hidden rounded-2xl shadow-[0_4px_10px_rgba(0,0,0,0.2)]"
+                    >
+                      <AutoVideo
+                        {...video}
+                        label="Aranmula Kannadi interaction recording"
+                      />
+                    </div>
+                  ))}
+                  {(videos ? (stills ?? []) : screens).map((n) => (
                     // screens ship with their own rounded corners
                     <div
                       key={n}
