@@ -64,14 +64,12 @@ function Wrap({
 export function ProjectCard({ project: p }: { project: Project }) {
   return (
     <article>
-      {/* thumbnails ship with their own rounded frame, so only the placeholder gets a border */}
+      {/* the frame (clip + shadow) lives on the card so it stays put while the image zooms inside it */}
       <Wrap
         href={p.href}
         label={`View ${p.title} case study`}
-        className={`group relative block aspect-[9/5] ${
-          p.image
-            ? "overflow-hidden rounded-xl drop-shadow-[0_4px_8px_rgba(0,0,0,0.25)]"
-            : "rounded-2xl border border-neutral-400 bg-neutral-200 shadow-[0_4px_10px_rgba(0,0,0,0.25)]"
+        className={`group relative block aspect-[9/5] rounded-2xl shadow-[0_4px_10px_rgba(0,0,0,0.25)] ${
+          p.image ? "overflow-hidden" : "border border-neutral-400 bg-neutral-200"
         }`}
       >
         {p.image && (
@@ -80,7 +78,8 @@ export function ProjectCard({ project: p }: { project: Project }) {
             alt={`${p.title} thumbnail`}
             fill
             sizes="(min-width: 768px) 50vw, 100vw"
-            className="object-contain transition-transform duration-500 ease-out group-hover:scale-105"
+            // starts slightly zoomed so the image's own transparent rounded corners fall outside the clip
+            className="scale-[1.06] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.12]"
           />
         )}
       </Wrap>

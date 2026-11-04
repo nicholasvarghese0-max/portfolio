@@ -9,7 +9,6 @@ import SideNav from "@/components/case-study/SideNav";
 import {
   Body,
   Caption,
-  Placeholder,
   Section,
 } from "@/components/case-study/parts";
 
@@ -248,7 +247,9 @@ export default function AranmulaKannadiPage() {
                 and traditional making process.
               </p>
               <a
-                href="#"
+                href="https://www.figma.com/proto/eRVzRqLyniQDhq03550N4U/Aranmula-Kannadi?page-id=0%3A1&node-id=9-55&viewport=-1095%2C323%2C0.15&t=KHPPA0OwR8zujiFq-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=9%3A55"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-8 inline-block text-xl text-brand transition-opacity hover:opacity-70"
               >
                 Prototype Website Link&rarr;
@@ -278,7 +279,17 @@ export default function AranmulaKannadiPage() {
               distinctive, distortion-free clarity.
             </Body>
             <Reveal>
-              <Placeholder className="aspect-[16/7]" />
+              <div className="aspect-video overflow-hidden rounded-2xl bg-neutral-200 shadow-[0_4px_10px_rgba(0,0,0,0.2)]">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/Ra4W_aztfHA"
+                  title="Aranmula Kannadi video"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  className="size-full border-0"
+                />
+              </div>
             </Reveal>
           </Section>
 

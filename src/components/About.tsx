@@ -1,3 +1,4 @@
+import AboutCarousel from "./AboutCarousel";
 import Reveal from "./Reveal";
 import SectionLabel from "./SectionLabel";
 
@@ -36,7 +37,7 @@ export default function About() {
       <div className="mt-10 grid gap-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
         {/* left column */}
         <Reveal>
-          <h2 className="font-display text-3xl">Hello there!</h2>
+          <h2 className="font-display text-3xl">Hey! It&rsquo;s Me!</h2>
           <p className="mt-3 font-serif text-4xl italic leading-tight text-brand">
             My name is Nicholas Mathew.
           </p>
@@ -89,7 +90,7 @@ export default function About() {
           </Reveal>
 
           <Reveal className="mt-14">
-            <div className="h-44 rounded-2xl bg-neutral-300 md:h-[155px]" />
+            <AboutCarousel />
           </Reveal>
         </div>
       </div>
